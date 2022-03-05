@@ -38,12 +38,12 @@ void AMazeGenerator::Step(int32 X, int32 Y)
             Step(X + 2, Y);
 
         case 1: // Right
-            if (Y - 2 <= 0 || Maze.Get(X, Y - 2) == 0)
+            if (Y + 2 >= Height - 1 || Maze.Get(X, Y + 2) == 0)
                 continue;
 
-            Maze.Set(X, Y - 2, 0);
-            Maze.Set(X, Y - 1, 0);
-            Step(X, Y - 2);
+            Maze.Set(X, Y + 2, 0);
+            Maze.Set(X, Y + 1, 0);
+            Step(X, Y + 2);
 
         case 2: // Down
             if (X - 2 <= 0 || Maze.Get(X - 2, Y) == 0)
@@ -54,12 +54,12 @@ void AMazeGenerator::Step(int32 X, int32 Y)
             Step(X - 2, Y);
 
         case 3: // Left
-            if (Y + 2 >= Height - 1 || Maze.Get(X, Y + 2) == 0)
+            if (Y - 2 <= 0 || Maze.Get(X, Y - 2) == 0)
                 continue;
 
-            Maze.Set(X, Y + 2, 0);
-            Maze.Set(X, Y + 1, 0);
-            Step(X, Y + 2);
+            Maze.Set(X, Y - 2, 0);
+            Maze.Set(X, Y - 1, 0);
+            Step(X, Y - 2);
         }
     }
 }
