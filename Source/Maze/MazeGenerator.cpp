@@ -15,8 +15,8 @@ AMazeGenerator::AMazeGenerator()
 void AMazeGenerator::BeginPlay()
 {
     Super::BeginPlay();
-
-    Maze.Init(1, Width * Height);
+    
+    Maze.Init();
     Step(StartX, StartY);
 
     Draw();
@@ -34,35 +34,35 @@ void AMazeGenerator::Step(int32 X, int32 Y)
         switch (directions[i])
         {
         case 0: // Up
-            if (X + 2 >= Width - 1 || Maze[(X + 2) + Y * Width] == 0)
+            if (X + 2 >= Width - 1 || Maze.Get(X + 2, Y) == 0)
                 continue;
 
-            Maze[(X + 2) + Y * Width] = 0;
-            Maze[(X + 1) + Y * Width] = 0;
+            Maze.Set(X + 2, Y, 0);
+            Maze.Set(X + 1, Y, 0);
             Step(X + 2, Y);
 
         case 1: // Right
-            if (Y - 2 <= 0 || Maze[X + (Y - 2) * Width] == 0)
+            if (Y - 2 <= 0 || Maze.Get(X, Y - 2) == 0)
                 continue;
 
-            Maze[X + (Y - 2) * Width] = 0;
-            Maze[X + (Y - 1) * Width] = 0;
+            Maze.Set(X, Y - 2, 0);
+            Maze.Set(X, Y - 1, 0);
             Step(X, Y - 2);
 
         case 2: // Down
-            if (X - 2 <= 0 || Maze[(X - 2) + Y * Width] == 0)
+            if (X - 2 <= 0 || Maze.Get(X - 2, Y) == 0)
                 continue;
 
-            Maze[(X - 2) + Y * Width] = 0;
-            Maze[(X - 1) + Y * Width] = 0;
+            Maze.Set(X - 2, Y, 0);
+            Maze.Set(X - 1, Y, 0);
             Step(X - 2, Y);
 
         case 3: // Left
-            if (Y + 2 >= Height - 1 || Maze[X + (Y + 2) * Width] == 0)
+            if (Y + 2 >= Height - 1 || Maze.Get(X, Y + 2) == 0)
                 continue;
 
-            Maze[X + (Y + 2) * Width] = 0;
-            Maze[X + (Y + 1) * Width] = 0;
+            Maze.Set(X, Y + 2, 0);
+            Maze.Set(X, Y + 1, 0);
             Step(X, Y + 2);
         }
     }
@@ -123,7 +123,7 @@ bool AMazeGenerator::IsPatternMatching(int32 X, int32 Y, TArray<int8> Pattern) c
     {
         for (int x = -1; x < 2; x++)
         {
-            if (Pattern[i] == Maze[(X + x) + (Y + y) * Width] || Pattern[i] == 5)
+            if (Pattern[i] == Maze.Get(X + x, Y + y) || Pattern[i] == 5)
             {
                 Count++;
             }

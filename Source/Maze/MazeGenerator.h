@@ -19,7 +19,18 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	TArray<int8> Maze;
+    class MazeData {
+    public:
+        MazeData(AMazeGenerator& MazeGen) : MazeGen{MazeGen} {}
+
+        void Init() { Data.Init(1, MazeGen.Width * MazeGen.Height); }
+        int8 Get(int32 X, int32 Y) const { return Data[X + Y * MazeGen.Width]; }
+        void Set(int32 X, int32 Y, int8 value) { Data[X + Y * MazeGen.Width] = value; }
+    private:
+        AMazeGenerator& MazeGen;
+        TArray<int8> Data;
+    };
+    MazeData Maze = MazeData(*this);
 
 	void Step(int32 X, int32 Y);
 	void Draw() const;
