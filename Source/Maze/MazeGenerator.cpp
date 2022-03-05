@@ -24,14 +24,10 @@ void AMazeGenerator::BeginPlay()
 
 void AMazeGenerator::Step(int32 X, int32 Y)
 {
-    int8 directions[4]{};
-    for (size_t d = 0; d < 4; d++) 
-    {
-        directions[d] = rand() % 4;
-    }
+    Directions.Shuffle();
 
     for (size_t i = 0; i < 4; i++) {
-        switch (directions[i])
+        switch (Directions[i])
         {
         case 0: // Up
             if (X + 2 >= Width - 1 || Maze.Get(X + 2, Y) == 0)

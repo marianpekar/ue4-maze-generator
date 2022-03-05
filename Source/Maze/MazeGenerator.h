@@ -32,6 +32,20 @@ protected:
     };
     MazeData Maze = MazeData(*this);
 
+    class WorldDirections {
+    public:
+        void Shuffle() {
+            for (int32 i = Data.Num() - 1; i != 0; i--) {
+                int32 j = rand() % i;
+                Data.Swap(i, j);
+            }
+        }
+        int8& operator[](size_t i) { return Data[i]; }
+    private:
+        TArray<int8> Data = { 0, 1, 2, 3 };
+    };
+    WorldDirections Directions;
+
 	void Step(int32 X, int32 Y);
 	void Draw() const;
 	void PlacePiece(int32 X, int32 Y, float Yaw, TSubclassOf<AActor> Piece) const;
