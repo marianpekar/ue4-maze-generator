@@ -41,6 +41,7 @@ protected:
             }
         }
         int8& operator[](size_t i) { return Data[i]; }
+        int32 Num() { return Data.Num(); }
     private:
         TArray<int8> Data = { 0, 1, 2, 3 };
     };

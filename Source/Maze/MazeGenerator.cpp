@@ -26,7 +26,7 @@ void AMazeGenerator::Step(int32 X, int32 Y)
 {
     Directions.Shuffle();
 
-    for (size_t i = 0; i < 4; i++) {
+    for (int32 i = 0; i < Directions.Num(); i++) {
         switch (Directions[i])
         {
         case 0: // Up
