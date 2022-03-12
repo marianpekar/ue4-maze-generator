@@ -18,7 +18,6 @@ void AMazeGenerator::BeginPlay()
     
     Maze.Init();
     Step(StartX, StartY);
-
     Draw();
 }
 
@@ -98,15 +97,6 @@ void AMazeGenerator::Draw() const
     }
 }
 
-void AMazeGenerator::PlacePiece(int32 X, int32 Y, float Yaw, TSubclassOf<AActor> Piece) const
-{
-    FVector Location(X * Scale, Y * Scale, 0);
-    FRotator Rotation(0, Yaw, 0);
-    FActorSpawnParameters SpawnInfo;
-
-    GetWorld()->SpawnActor<AActor>(Piece, Location, Rotation, SpawnInfo);
-}
-
 // All patterns are defined in Maze.h
 // Example pattern: [ 1 0 1 
 //                    0 0 0 
@@ -129,4 +119,13 @@ bool AMazeGenerator::IsPatternMatching(int32 X, int32 Y, TArray<int8> Pattern) c
     }
 
     return Count == 9;
+}
+
+void AMazeGenerator::PlacePiece(int32 X, int32 Y, float Yaw, TSubclassOf<AActor> Piece) const
+{
+    FVector Location(X * Scale, Y * Scale, 0);
+    FRotator Rotation(0, Yaw, 0);
+    FActorSpawnParameters SpawnInfo;
+
+    GetWorld()->SpawnActor<AActor>(Piece, Location, Rotation, SpawnInfo);
 }
