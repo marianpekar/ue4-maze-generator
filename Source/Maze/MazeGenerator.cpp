@@ -70,29 +70,29 @@ void AMazeGenerator::Draw() const
         for (int32 y = 1; y < Height - 1; y++)
         {
             // Straight
-            if (IsPatternMatching(x, y, HorizontalStraightPattern)) { PlacePiece(x, y, 90.f, StraightPiece); continue; }
-            if (IsPatternMatching(x, y, VerticalStraightPattern))   { PlacePiece(x, y,  0.f, StraightPiece); continue; }
+            if      (IsPatternMatching(x, y, HorizontalStraightPattern)) { PlacePiece(x, y, 90.f, StraightPiece); }
+            else if (IsPatternMatching(x, y, VerticalStraightPattern))   { PlacePiece(x, y,  0.f, StraightPiece); }
 
             // Turns
-            if (IsPatternMatching(x, y, TurnLeftUpPattern))    { PlacePiece(x, y, 0.f, TurnPiece);   continue; }
-            if (IsPatternMatching(x, y, TurnLeftDownPattern))  { PlacePiece(x, y, 90.f, TurnPiece);  continue; }
-            if (IsPatternMatching(x, y, TurnRightUpPattern))   { PlacePiece(x, y, -90.f, TurnPiece); continue; }
-            if (IsPatternMatching(x, y, TurnRightDownPattern)) { PlacePiece(x, y, 180.f, TurnPiece); continue; }
+            else if (IsPatternMatching(x, y, TurnLeftUpPattern))    { PlacePiece(x, y, 0.f, TurnPiece);   }
+            else if (IsPatternMatching(x, y, TurnLeftDownPattern))  { PlacePiece(x, y, 90.f, TurnPiece);  }
+            else if (IsPatternMatching(x, y, TurnRightUpPattern))   { PlacePiece(x, y, -90.f, TurnPiece); }
+            else if (IsPatternMatching(x, y, TurnRightDownPattern)) { PlacePiece(x, y, 180.f, TurnPiece); }
 
             // T Junctions	
-            if (IsPatternMatching(x, y, TJunctionUpPattern))    { PlacePiece(x, y, -90.f, TJunctionPiece); continue; }
-            if (IsPatternMatching(x, y, TJunctionDownPattern))  { PlacePiece(x, y,  90.f, TJunctionPiece); continue; }
-            if (IsPatternMatching(x, y, TJunctionLeftPattern))  { PlacePiece(x, y,   0.f, TJunctionPiece); continue; }
-            if (IsPatternMatching(x, y, TJunctionRightPattern)) { PlacePiece(x, y, 180.f, TJunctionPiece); continue; }
+            else if (IsPatternMatching(x, y, TJunctionUpPattern))    { PlacePiece(x, y, -90.f, TJunctionPiece); }
+            else if (IsPatternMatching(x, y, TJunctionDownPattern))  { PlacePiece(x, y,  90.f, TJunctionPiece); }
+            else if (IsPatternMatching(x, y, TJunctionLeftPattern))  { PlacePiece(x, y,   0.f, TJunctionPiece); }
+            else if (IsPatternMatching(x, y, TJunctionRightPattern)) { PlacePiece(x, y, 180.f, TJunctionPiece); }
 
             // Dead ends
-            if (IsPatternMatching(x, y, DeadEndUpPattern))    { PlacePiece(x, y,  90.f, DeadEndPiece); continue; }
-            if (IsPatternMatching(x, y, DeadEndDownPattern))  { PlacePiece(x, y, -90.f, DeadEndPiece); continue; }
-            if (IsPatternMatching(x, y, DeadEndLeftPattern))  { PlacePiece(x, y, 180.f, DeadEndPiece); continue; }
-            if (IsPatternMatching(x, y, DeadEndRightPattern)) { PlacePiece(x, y,   0.f, DeadEndPiece); continue; }
+            else if (IsPatternMatching(x, y, DeadEndUpPattern))    { PlacePiece(x, y,  90.f, DeadEndPiece); }
+            else if (IsPatternMatching(x, y, DeadEndDownPattern))  { PlacePiece(x, y, -90.f, DeadEndPiece); }
+            else if (IsPatternMatching(x, y, DeadEndLeftPattern))  { PlacePiece(x, y, 180.f, DeadEndPiece); }
+            else if (IsPatternMatching(x, y, DeadEndRightPattern)) { PlacePiece(x, y,   0.f, DeadEndPiece); }
 
             // Crossroad
-            if (IsPatternMatching(x, y, CrossroadPattern)) { PlacePiece(x, y, 0.f, CrossroadPiece); continue; }
+            else if (IsPatternMatching(x, y, CrossroadPattern)) { PlacePiece(x, y, 0.f, CrossroadPiece); }
         }
     }
 }
